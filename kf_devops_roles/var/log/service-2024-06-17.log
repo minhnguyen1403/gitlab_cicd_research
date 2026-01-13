@@ -1,0 +1,1 @@
+<14>1 2024-06-17T08:44:51.90+07:00 - kf_roles 62245 - - KFJAEGERLOG {"id":"0373eb3adc7d8f61","traceId":"0373eb3adc7d8f61","name":"get_roles","kind":"SERVER","duration":26000,"timestamp":1718613891062000,"localEndpoint":{"serviceName":"kf_roles"},"remoteEndpoint":{"ipv4":"::1"},"tags":{"http.method":"GET","http.url":"/v1/roles","http.status_code":"200"}} KFJAEGERLOG

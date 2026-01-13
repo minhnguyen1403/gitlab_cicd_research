@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+  namespace: nginx-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: api.minhnguyen.info.vn
+    http:
+      paths:
+      - path: /v1/roles
+        pathType: Prefix
+        backend:
+          service:
+            name: kf-service-roles
+            port:
+              number: 3000

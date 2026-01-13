@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  gitlab_runner:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    image: kf_image_runner
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/gitlab-runner/config:/etc/gitlab-runner
+    restart: always
+    networks:
+      - kfm_network
+
+networks:
+  kfm_network:
+    external: true

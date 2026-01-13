@@ -1,0 +1,11 @@
+FROM --platform=x86_64 gitlab/gitlab-runner:latest
+
+RUN apt-get update && apt-get install -y \
+    openssh-client \
+    syslog-ng \
+    fonts-roboto
+
+USER root
+RUN mkdir -p /.gitlab-runner && chown -R 1000:1000 /.gitlab-runner
+    
+USER 1000

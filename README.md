@@ -37,6 +37,20 @@ Each service is a standalone Node.js application with:
 ### 4. **Infrastructure as Code**
 Uses Kubernetes manifests (`deployment.yaml`, `role.ingress.yaml`) for infrastructure management
 
+### 5. **Helm-Based Deployment** (`/sample_service_deployed_on_k8s_helm`)
+- **Sample Service**: Complete Node.js microservice example with Helm chart
+- **Helm Chart** (`/helm-chart`): 
+  - Chart configuration (`Chart.yaml`)
+  - Values configuration (`values.yaml`)
+  - Kubernetes templates for deployment
+  - Service, Ingress, and ConfigMap templates
+- **Features**:
+  - Container registry integration (Harbor)
+  - Image pull secrets management
+  - NodePort service configuration
+  - Helm-based version management
+  - Production-ready deployment patterns
+
 ## 🏗️ System Architecture
 
 ```
@@ -60,12 +74,14 @@ Uses Kubernetes manifests (`deployment.yaml`, `role.ingress.yaml`) for infrastru
 │ │          │ │          │ │          │ │
 │ │ (Pod)    │ │ (Pod)    │ │ (Pod)    │ │
 │ └──────────┘ └──────────┘ └──────────┘ │
-│                                         │
-│ ┌──────────┐ ┌──────────┐              │
-│ │ avian_   │ │ kf_devops│              │
-│ │framework │ │_roles    │              │
-│ │(Shared)  │ │(Pod)     │              │
-│ └──────────┘ └──────────┘              │
+│   Package Manager**: Helm (for K8s deployments)
+- **Container Registry**: Harbor
+- **CI/CD**: GitLab CI/CD
+- **Build Tool**: Docker Compose
+- **Monitoring**: Jaeger (distributed tracing)
+- **Caching**: Redis
+- **Service Discovery**: Consul
+- **Database**: PostgreSQL (MariaDB
 └─────────────────────────────────────────┘
 ```
 
@@ -99,7 +115,12 @@ gitlab_cicd_research/
 │   ├── deployment.yaml
 │   ├── role.ingress.yaml
 │   └── README.md
-└── library/                    # Shared libraries
+├── library/                    # Shared libraries
+└── sample_service_deployed_on_k8s_helm/  # Sample service with Helm deployment
+    ├── helm-chart/            # Helm chart for K8s deployment
+    ├── controllers/           # API controllers
+    ├── models/                # Database models
+    └── services/              # Business logic services
 ```
 
 ## 🚀 Learning Objectives
@@ -112,7 +133,26 @@ This project is designed for learning and practicing:
 4. ✅ **Kubernetes Orchestration**: Deploying and managing containers at scale
 5. ✅ **Distributed Tracing**: Monitoring with Jaeger
 6. ✅ **Service Discovery**: Using Consul
-7. ✅ **DevOps Best Practices**: Infrastructure as Code, monitoring, and logging
+7. ✅ **DevOps Best Practices**: Infras
+- [Sample Helm Service README](./sample_service_deployed_on_k8s_helm/README.md)
+
+### Deploy with Helm
+
+For Helm-based deployments (using `sample_service_deployed_on_k8s_helm` as example):
+
+```bash
+# Navigate to the Helm chart directory
+cd sample_service_deployed_on_k8s_helm/helm-chart
+
+# Install the chart
+helm install kf-users . --namespace your-namespace
+
+# Upgrade an existing release
+helm upgrade kf-users . --namespace your-namespace
+
+# View values
+helm get values kf-users -n your-namespace
+```tructure as Code, monitoring, and logging
 8. ✅ **Microservices Communication**: Service-to-service API calls
 
 ## 🎓 Getting Started
